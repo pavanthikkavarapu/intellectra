@@ -1,0 +1,13 @@
+
+<div class="container" *ngIf="results">
+  <div class="row">
+    <div class="card col-md-3 col-md-offset-1 card-styles"  *ngFor="let users of results">
+      <div class="card-block">
+        <h4 class="card-title">{{users.name}}</h4>
+        <p class="card-text">{{users.email}}</p>
+        <a  class="btn btn-primary" [routerLink]="['/todos', users.id]" >View Todos</a>
+      </div>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+  </div>
+</div>
