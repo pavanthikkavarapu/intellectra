@@ -11,6 +11,7 @@ export class TodosComponent implements OnInit {
   todos:any
   addtodo
   userId
+  elements
   constructor(private route: ActivatedRoute,private http: HttpClient) {
     this.addtodo = ''
 
@@ -42,12 +43,12 @@ export class TodosComponent implements OnInit {
     this.addtodo = ''
   }
 
-  onStatusChanged(statusChanged,todoId){
+  /*onStatusChanged(statusChanged,todoId){
     console.log('statusChanged '+todoId)
     this.http.put('https://jsonplaceholder.typicode.com/todos/'+todoId,statusChanged).subscribe(res =>{
       console.log('status changed sucessfuly')
     })
-  }
+  }*/
 
   saveTodos(savetodos){
     console.log('savetodos '+JSON.stringify(savetodos))
@@ -58,9 +59,12 @@ export class TodosComponent implements OnInit {
   
   delTodo(todoID){
     console.log('todoID '+JSON.stringify(todoID))
-    this.http.delete('https://jsonplaceholder.typicode.com/todos/'+todoID).subscribe(res =>{
+    let index = this.todos.indexOf(todoID);
+    this.todos.splice(index, 1);
+    this.http.get('https://jsonplaceholder.typicode.com/todos/'+todoID).subscribe(res =>{
       console.log('status changed sucessfuly'+JSON.stringify(res))
     })
   }
+  
 
 }
